@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { ServiceManager, SPEECH_SPEAK_SERVICE } from 'speech-react';
+
 import {
   toggleChat,
   openChat,
@@ -29,12 +32,14 @@ class Widget extends Component {
   constructor(props) {
     super(props);
     this.messages = [];
+    this.speakService = ServiceManager.get(SPEECH_SPEAK_SERVICE);
     setInterval(() => {
       if (this.messages.length > 0) {
         this.dispatchMessage(this.messages.shift());
       }
     }, this.props.interval);
   }
+
 
   componentDidMount() {
     const { socket, storage } = this.props;
@@ -157,11 +162,23 @@ class Widget extends Component {
     this.props.dispatch(toggleChat());
   };
 
+  speak(text) {
+    if (this.speakService) {
+      if (this.speakService.active) {
+        this.speakService.language = 'en-US';
+        this.speakService.text = text;
+        this.speakService.start();
+      }
+    }
+  }
+
   dispatchMessage(message) {
     if (Object.keys(message).length === 0) {
       return;
     }
     if (isText(message)) {
+      console.log('Textnachricht:', message.text);
+      this.speak(message.text);
       this.props.dispatch(addResponseMessage(message.text));
     } else if (isQR(message)) {
       this.props.dispatch(addQuickReply(message));
