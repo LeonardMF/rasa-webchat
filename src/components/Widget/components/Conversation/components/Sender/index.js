@@ -14,7 +14,6 @@ class Sender extends Component {
 
   constructor(props) {
     super(props);
-    this.listenText = '';
     this.listenResultEvent = null;
     this.listenService = ServiceManager.get(SPEECH_LISTEN_SERVICE);
   }
@@ -23,9 +22,11 @@ class Sender extends Component {
   componentDidMount() {
     if (this.listenService) {
       this.listenResultEvent = this.listenService.resultEvent.subscribe((listenResult) => {
-        console.log('Listen-Text:', listenResult);
-        this.listenText = listenResult;
-        this.forceUpdate();
+        // console.log('Listen-Text:', listenResult);
+        const inputDom = document.getElementById('inputText');
+        // console.log('InputDom:', inputDom);
+        inputDom.value = listenResult;
+        // this.forceUpdate();
       });
     }
   }
@@ -40,7 +41,7 @@ class Sender extends Component {
     return (
       <form className="sender" onSubmit={this.props.sendMessage}>
         <Microphone />
-        <input type="text" className="new-message" name="message" value={this.listenText} placeholder={this.props.inputFieldTextHint} disabled={this.props.disabledInput} autoFocus autoComplete="off" />
+        <input type="text" className="new-message" name="message" id="inputText" placeholder={this.props.inputFieldTextHint} disabled={this.props.disabledInput} autoFocus autoComplete="off" />
         <button type="submit" className="send">
           <img src={send} className="send-icon" alt="send" />
         </button>
