@@ -165,7 +165,7 @@ class Widget extends Component {
   speak(text) {
     if (this.speakService) {
       if (this.speakService.active) {
-        this.speakService.language = 'en-US';
+        this.speakService.language = 'en';
         this.speakService.text = text;
         this.speakService.start();
       }
