@@ -1,23 +1,29 @@
 .button {
 
     &:active, &:focus {
-     color: #61dafb;
+     color: #cbcbcb;
      outline: none;
     }
     &--speaker {
-      color: #61dafb;
-      font-size: 10vh;
+      color: #cbcbcb;
+      font-size: 4vh;
+      border-radius: 50%;
       background-color: transparent;
     }
   
     &--speaker-active {
       background-color: transparent;
-      color: #ff5852;
-      font-size: 10vh;
+      color: #003a9b;
+      font-size: 4vh;
       &:active, &:focus {
-       color: #ff5852;
+       color: #003a9b;
        outline: none;
       }
     }
   
   }
+
+.circle {
+    margin-bottom: 5px;
+    margin-left: 5px;
+}

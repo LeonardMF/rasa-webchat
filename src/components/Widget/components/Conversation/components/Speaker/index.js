@@ -40,11 +40,11 @@ class Speaker extends Component {
         <div className="speaker">
           { this.isSpeak() ?
             <div id="speaker-active" className="button--speaker-active" onClick={() => this.toggleSpeak()}>
-              <FontAwesomeIcon icon="volume-up" />
+              <FontAwesomeIcon className="circle" icon="volume-up" />
             </div>
             :
             <div id="speaker" className="button--speaker" onClick={() => this.toggleSpeak()}>
-              <FontAwesomeIcon icon="volume-off" />
+              <FontAwesomeIcon className="circle" icon="volume-off" />
             </div>
           }
         </div>
