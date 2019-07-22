@@ -21,7 +21,7 @@ class Microphone extends Component {
     // Listenservice holen
     this.listenService = ServiceManager.get(SPEECH_LISTEN_SERVICE);
     if (this.listenService) {
-      this.listenService.language = 'de';
+      this.listenService.language = 'en';
     }
   }
 

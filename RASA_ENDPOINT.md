@@ -12,3 +12,7 @@ In ```credentials.yml```:
 ## Run Rasa on localhost:5005
 
     $ rasa run -m models --enable-api
+
+## Run Webchat
+
+    $ npm run dev
